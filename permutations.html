@@ -1,0 +1,146 @@
+    <script>
+        var gridOptions = {
+            color: '#f2f2f2',
+            GridSize: 20,
+            LinesSize: 1
+        };
+        var ctx, canvas;
+        function displayGrid() {
+            var i, Height, Width, GridSize;
+            canvas = document.getElementById("myCanvas");
+            if (canvas.getContext) {
+                ctx = canvas.getContext("2d");
+                var Height = canvas.height;
+                var Width = canvas.width;
+                ctx.strokeStyle = gridOptions.color;
+                ctx.lineWidth = parseInt(gridOptions.LinesSize);
+                GridSize = 0;
+                GridSize = parseInt(gridOptions.GridSize);
+                for (i = 0; i < Height; i += GridSize) {
+                    ctx.moveTo(0, i);
+                    ctx.lineTo(Width, i);
+                    ctx.stroke();
+                }
+                for (i = 0; i < Width; i += GridSize) {
+                    ctx.moveTo(i, 0);
+                    ctx.lineTo(i, Height);
+                    ctx.stroke();
+                }
+            }
+        }
+    </script>
+ 
+<html lang="de">
+    <head>
+        <title>Permutations</title>
+    </head>
+	 <h1>Permutations</h1>
+    <body>
+	<p> First ball has a choice of 4 colours, second ball has a choice of 3 colours, third ball has a choice of 2 colours, fourth ball has just one colour. </p>
+			<button onclick="shift()">Next</button>
+			<button onclick="arrangement()">Arrangements</button>
+	<button onclick="window.location.reload()">Refresh</button>
+	<p id="original"></p>
+	
+	<canvas id="cumulatedView" width="500" height="500"></canvas>
+    </body>
+</html>
+	
+<script>
+var c = document.getElementById("cumulatedView");
+var ctx = c.getContext("2d");
+var x = []
+var y = []
+x1 = 300+0;
+y1 = 300+0;
+var combinationscounter = 0;
+var counter = 1
+var length = 50;
+var counter = 0;
+var sides = 4;
+var sides2 = 2;
+var whites = [0];
+var reds = [0];
+var exteriorangle = 360/sides/// Degree
+for (var i = 0; i < sides; i++) {
+var x3 = x1+20 
+var y3 = y1+Math.sin((Math.PI / 180.0) * exteriorangle * counter)*length
+x[i] = x3;
+y[i] = y3;
+ctx.beginPath();
+ctx.arc(x[i], 100, 10, 0, 2 * Math.PI);
+ctx.stroke();
+x1 = x3;
+y1 = y3;
+counter = counter+1
+}
+counter = 0;
+var limit = sides;
+counter = 0;
+var first = 0;
+var limit = 0;
+var choices = 3;
+function shift() {
+document.getElementById("original").innerHTML = counter+1;
+combinationscounter=combinationscounter+1;
+if (counter==choices)
+{counter = counter;
+choices = choices - 1;
+}
+switch(counter) {
+  case 0:
+                ctx.beginPath();
+      ctx.arc(x[first], 100, 10, 0, 2 * Math.PI);
+      ctx.fillStyle = 'red';
+      ctx.fill();
+      ctx.lineWidth = 5;
+      ctx.strokeStyle = '#003300';
+      ctx.stroke();
+    break;
+  case 1:
+                ctx.beginPath();
+      ctx.arc(x[first], 100, 10, 0, 2 * Math.PI);
+      ctx.fillStyle = 'blue';
+      ctx.fill();
+      ctx.lineWidth = 5;
+      ctx.strokeStyle = '#003300';
+      ctx.stroke();
+    break;
+	  case 2:
+                ctx.beginPath();
+      ctx.arc(x[first], 100, 10, 0, 2 * Math.PI);
+      ctx.fillStyle = 'yellow';
+      ctx.fill();
+      ctx.lineWidth = 5;
+      ctx.strokeStyle = '#003300';
+      ctx.stroke();
+    break;
+		  case 3:
+                ctx.beginPath();
+      ctx.arc(x[first], 100, 10, 0, 2 * Math.PI);
+      ctx.fillStyle = 'green';
+      ctx.fill();
+      ctx.lineWidth = 5;
+      ctx.strokeStyle = '#003300';
+      ctx.stroke();
+    break;
+  default:
+}
+if (counter>choices)
+{counter = -1
+ first = first+1;}
+      counter = (counter+1);
+}
+function arrangement() {
+alert("4x3x2x1 = 24") 
+}
+</script>
+</br>
+<a href="http://mathsforeveryone.freevar.com/content.html#IFY">Back to contents page</a>
+</br>
+</br>
+</br>
+</br>
+Tutoring <b>https://www.tutorhunt.com/users/3207830548286/</b>
+</body>
+</html>
