@@ -1,0 +1,178 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  height: 600px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+</style>
+    <head>
+        <title>Venn Diagrams</title>
+    </head>
+	 <h1>Venn Diagrams Exercises</h1>
+<div class="row">
+	 <button onclick="window.location.reload()">Refresh</button>
+<canvas id="cumulatedView" width="600" height="300"></canvas>
+</div>
+<div class="row">
+<div class="column" style="background-color:#aaa;">
+<h1>Bronze</h1>
+<b> Find the values inside each set </b>
+</br>
+			<button onclick="Asolution()">A</button>
+						<p id="Aanswer"></p>
+			<button onclick="Bsolution()">B</button>
+			<p id="Banswer"></p>
+			<button onclick="AnBsolution()">AnB</button>
+			<p id="AnBanswer"></p>
+			<button onclick="AUBsolution()">AUB</button>
+			<p id="AUBanswer"></p>
+			<button onclick="NotAUBsolution()">(AUB)'</button>
+			<p id="NotAUBanswer"></p>
+			</br>
+</div>
+<div class="column" style="background-color:#bbb;">
+<h1>Silver</h1>
+			<button onclick="probAsolution()">P(A)</button>
+						<p id="probAanswer"></p>
+									<button onclick="probBsolution()">P(B)</button>
+						<p id="probBanswer"></p>
+									<button onclick="probAnBsolution()">P(AnB)</button>
+									<p id="probAnBanswer"></p>
+						<button onclick="probAUBsolution()">P(AUB)</button>
+						<p id="probAUBanswer"></p>
+</div>
+<div class="column" style="background-color:#ccc;">
+<h1>Gold</h1>
+<button onclick="probNotAsolution()">P(A')</button>
+						<p id="probNotAanswer"></p>
+									<button onclick="probNotAnBsolution()">P((AnB)')</button>
+						<p id="probNotAnBanswer"></p>
+									<button onclick="probAgivenBsolution()">P(A/B)</button>
+									<p id="probAgivenBanswer"></p>
+</div>
+<script>
+var c = document.getElementById("cumulatedView");
+var ctx = c.getContext("2d");
+ctx.beginPath();
+ctx.arc(300, 125, 100, 0, 2*Math.PI);
+ctx.stroke();
+ctx.beginPath();
+ctx.arc(400, 125, 100, 0, 2*Math.PI);
+ctx.stroke();
+ctx.font = "20px Arial";
+ctx.fillStyle = "red";
+ctx.textAlign = "center";
+ctx.fillText("A",300,150);
+ctx.fillText("B",400,150);
+ctx.beginPath();
+ctx.rect(150, 0, 400, 250);
+ctx.stroke();
+var i;
+var A = []
+var B = []
+var C = []
+var textA = "";
+var textB = "";
+var textC = "";
+var textAB = "";
+var textAUB = "";
+var counterA = 0;
+var counterB = 0;
+var counterC = 0;
+var counterAB = 0;
+var counterAUB = 0;
+var n; 
+var total = 5
+for (i = 1; i < total+1; i++) {
+var x = 200+35*i
+var y = 50+5*i*Math.round(3*Math.random())
+var n = Math.round(75*Math.random())
+if (Math.pow(Math.pow(x-300,2)+Math.pow(y-125,2),0.5)<100) {
+  A[i-1] = n ;
+  textA += A[i-1] + ", "
+  counterA = counterA + 1;
+  textAUB += A[i-1] + ", "
+  counterAUB = counterAUB + 1;
+  ctx.fillText(n,x,y);
+   if (Math.pow(Math.pow(x-400,2)+Math.pow(y-125,2),0.5)<100) {
+  textAB += n + ", "
+  counterAB = counterAB + 1;
+  counterAUB = counterAUB - 1;
+  } 
+  }
+ if (Math.pow(Math.pow(x-400,2)+Math.pow(y-125,2),0.5)<100) {
+  B[i-1] = n ;
+  textB += B[i-1] + ", "
+  counterB = counterB + 1;
+  textAUB += B[i-1] + ", "
+  counterAUB = counterAUB + 1;
+  ctx.fillText(n,x,y);
+  } 
+  if (Math.pow(Math.pow(x-400,2)+Math.pow(y-125,2),0.5)>100) {
+  if (Math.pow(Math.pow(x-300,2)+Math.pow(y-125,2),0.5)>100) {
+  textC += n + ", "
+  counterC = counterC + 1;
+  }
+  }
+}
+        function Asolution() {
+		 document.getElementById("Aanswer").innerHTML =  "A = " + textA;
+				}
+				        function Bsolution() {
+		 document.getElementById("Banswer").innerHTML =  "B = " + textB;
+				}
+								        function AnBsolution() {
+		 document.getElementById("AnBanswer").innerHTML =  "AnB = " + textAB;
+				}
+												        function AUBsolution() {
+		 document.getElementById("AUBanswer").innerHTML = "AUB ="  + textAUB;
+				}
+																        function NotAUBsolution() {
+		 document.getElementById("NotAUBanswer").innerHTML = "(AUB)' = "  + textC;
+				}
+				        function probAsolution() {
+		 document.getElementById("probAanswer").innerHTML =  "P(A) = " + counterA/total;
+				}
+								        function probBsolution() {
+		 document.getElementById("probBanswer").innerHTML =  "P(B) = " + counterB/total;
+				}
+												        function probAnBsolution() {
+		 document.getElementById("probAnBanswer").innerHTML =  "P(AnB) = " + counterAB/total;
+				}
+												        function probAUBsolution() {
+		 document.getElementById("probAUBanswer").innerHTML =  "P(AUB) = " + counterAUB/total;
+		 }
+		 								        function probNotAsolution() {
+		 document.getElementById("probNotAanswer").innerHTML =  "P(A') = " + (1-counterA/total);
+				}
+												        function probNotAnBsolution() {
+		 document.getElementById("probNotAnBanswer").innerHTML =  "P(AnB) = " + (1-counterAB/total);
+				}
+												        function probAgivenBsolution() {
+		 document.getElementById("probAgivenBanswer").innerHTML =  "P(A/B) = " + counterAB/counterB;
+				}
+</script>
+<a href="http://mathsforeveryone.freevar.com/content.html#IFY">Back to contents page</a>
+</br>
+</br>
+</br>
+</br>
+Tutoring <b>https://www.tutorhunt.com/users/3207830548286/</b>
+</body>
+</html> 

@@ -1,0 +1,134 @@
+
+    <script>
+        var gridOptions = {
+            color: '#f2f2f2',
+            GridSize: 20,
+            LinesSize: 1
+        };
+        var ctx, canvas;
+        function displayGrid() {
+            var i, Height, Width, GridSize;
+            canvas = document.getElementById("myCanvas");
+            if (canvas.getContext) {
+                ctx = canvas.getContext("2d");
+                var Height = canvas.height;
+                var Width = canvas.width;
+                ctx.strokeStyle = gridOptions.color;
+                ctx.lineWidth = parseInt(gridOptions.LinesSize);
+                GridSize = 0;
+                GridSize = parseInt(gridOptions.GridSize);
+                for (i = 0; i < Height; i += GridSize) {
+                    ctx.moveTo(0, i);
+                    ctx.lineTo(Width, i);
+                    ctx.stroke();
+                }
+                for (i = 0; i < Width; i += GridSize) {
+                    ctx.moveTo(i, 0);
+                    ctx.lineTo(i, Height);
+                    ctx.stroke();
+                }
+            }
+        }
+    </script>
+ 
+<html>
+    <head>
+        <title>Venn Diagrams</title>
+    </head>
+	 <h1>Venn Diagrams</h1>
+    <body>
+			<button onclick="window.location.reload()">Refresh</button>
+			</br>
+			<button onclick="Asolution()">A</button>
+						<p id="Aanswer"></p>
+			<button onclick="Bsolution()">B</button>
+			<p id="Banswer"></p>
+			<button onclick="AnBsolution()">AnB</button>
+			<p id="AnBanswer"></p>
+			<button onclick="AUBsolution()">AUB</button>
+			<p id="AUBanswer"></p>
+			<button onclick="NotAUBsolution()">(AUB)'</button>
+			<p id="NotAUBanswer"></p>
+			</br>
+	<canvas id="cumulatedView" width="600" height="600"></canvas>
+    </body>
+</html>
+	
+<script>
+var c = document.getElementById("cumulatedView");
+var ctx = c.getContext("2d");
+var c = document.getElementById("cumulatedView");
+var ctx = c.getContext("2d");
+ctx.beginPath();
+ctx.arc(300, 125, 100, 0, 2*Math.PI);
+ctx.stroke();
+ctx.beginPath();
+ctx.arc(400, 125, 100, 0, 2*Math.PI);
+ctx.stroke();
+ctx.font = "20px Arial";
+ctx.fillStyle = "red";
+ctx.textAlign = "center";
+ctx.fillText("A",300,150);
+ctx.fillText("B",400,150);
+ctx.beginPath();
+ctx.rect(150, 0, 400, 250);
+ctx.stroke();
+var i;
+var A = []
+var B = []
+var C = []
+var textA = "";
+var textB = "";
+var textC = "";
+var textAB = "";
+var textAUB = "";
+var n; 
+for (i = 1; i < 5; i++) {
+var x = 200+Math.round(300*Math.random())
+var y = 50+Math.round(100*Math.random())
+var n = Math.round(75*Math.random())
+if (Math.pow(Math.pow(x-300,2)+Math.pow(y-125,2),0.5)<100) {
+  A[i-1] = n ;
+  textA += A[i-1] + ", "
+  textAUB += A[i-1] + ", "
+  ctx.fillText(n,x,y);
+   if (Math.pow(Math.pow(x-400,2)+Math.pow(y-150,2),0.5)<100) {
+  textAB += n + ", "
+  } 
+  }
+ else if (Math.pow(Math.pow(x-400,2)+Math.pow(y-150,2),0.5)<100) {
+  B[i-1] = n ;
+  textB += B[i-1] + ", "
+  textAUB += B[i-1] + ", "
+  ctx.fillText(n,x,y);
+  } 
+  else {
+  textC += n + ", "
+  }
+}
+
+
+        function Asolution() {
+		 document.getElementById("Aanswer").innerHTML =  "A = " + textA;
+				}
+				        function Bsolution() {
+		 document.getElementById("Banswer").innerHTML =  "B = " + textB;
+				}
+								        function AnBsolution() {
+		 document.getElementById("AnBanswer").innerHTML =  "AnB = " + textAB;
+				}
+												        function AUBsolution() {
+		 document.getElementById("AUBanswer").innerHTML = "AUB ="  + textAUB;
+				}
+																        function NotAUBsolution() {
+		 document.getElementById("NotAUBanswer").innerHTML = "(AUB)' = "  + textC;
+				}
+</script>
+<a href="http://mathsforeveryone.freevar.com/content.html#IFY">Back to contents page</a>
+</br>
+</br>
+</br>
+</br>
+Tutoring <b>https://www.tutorhunt.com/users/3207830548286/</b>
+</body>
+</html> 
