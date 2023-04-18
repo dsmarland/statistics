@@ -22,11 +22,38 @@
     <td>Correct decision- no effect</td>
     <td>Type 2 error- false negative</td>
   </tr>
+  </br>
+  </br>
   <img src="typeerror.png">
   
   <h2> Example 1 </h2>
-  
-  
+  <p>Lucy can hit the target 70% of the time when she throws an axe with her right hand. She claims that the proportion, 
+  p, of her throws that hit the target is higher than 70% when she uses her left hand. 
+  Lucy uses the hypotheses \(H_{0}:p = 0.7\) and \(H_{1}:p > 0.7\) to test her claim. Lucy makes 100 throws and will reject the null hypothesis if the axe hits the target more than 77 times.</>
+  Let X -B(100,p) be the number of times lucy hits the target when using her left hand,
+  </br>
+  P(Type 1 error) = P(being in critical region|Ho is true)
+  </br>
+  P(Type 1 error) = P(X > 77| p = 0.7) 
+  </br>
+   P(Type 1 error) = P(78=<X =<100| p = 0.7)  = 0.04786
+  </p>
+    <h2> Example 2 </h2>
+  <p>Lucy can hit the target 70% of the time when she throws an axe with her right hand. She claims that the proportion, 
+  p, of her throws that hit the target is higher than 70% when she uses her left hand. 
+  Lucy uses the hypotheses \(H_{0}:p = 0.7\) and \(H_{1}:p > 0.7\) to test her claim. Lucy makes 100 throws and will reject the null hypothesis if the axe hits the target more than 77 times.</>
+  Let X -B(100,p) be the number of times lucy hits the target when using her left hand.
+  Given that Lucy actually hits the target 80% of the time with her left hand, 
+  find the probability of a Type II error
+  </br>
+  P(Type II error) = P(not being in critical region|true population parameter)
+  </br>
+  P(Type II error) = P(X =< 77| p = 0.8) 
+  </br>
+  P(Type II error) = P(0=< X =< 77| p = 0.8) 
+  </br>
+   P(Type II error) =  0.261
+  </p>
 </table>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script type="text/javascript" id="MathJax-script" async
